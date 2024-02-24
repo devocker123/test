@@ -15,6 +15,6 @@ jobs :
     - name : install dependencies
       run : |
         python -m pip install --upgrade pip
-    -name : Run cal.py
-     run : |
-      python cal.py
+    - name : Run cal.py
+      run : |
+        python cal.py
