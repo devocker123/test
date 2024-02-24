@@ -17,4 +17,4 @@ jobs :
         python -m pip install --upgrade pip
     - name : Run cal.py
       run : |
-        python cal.py
+        python cal.py 5 2 add

@@ -1,4 +1,5 @@
-# calculator.py
+# calculator_cli.py
+import argparse
 
 def add(x, y):
     return x + y
@@ -14,22 +15,25 @@ def divide(x, y):
         raise ValueError("Cannot divide by zero!")
     return x / y
 
-if __name__ == "__main__":
-    print("Simple Calculator")
-    x = float(input("Enter first number: "))
-    y = float(input("Enter second number: "))
-    operation = input("Enter operation (add, subtract, multiply, divide): ")
+def main():
+    parser = argparse.ArgumentParser(description='A simple calculator.')
+    parser.add_argument('x', type=float, help='First number')
+    parser.add_argument('y', type=float, help='Second number')
+    parser.add_argument('operation', choices=['add', 'subtract', 'multiply', 'divide'], help='Operation')
 
-    if operation == "add":
-        print("Result:", add(x, y))
-    elif operation == "subtract":
-        print("Result:", subtract(x, y))
-    elif operation == "multiply":
-        print("Result:", multiply(x, y))
-    elif operation == "divide":
+    args = parser.parse_args()
+
+    if args.operation == 'add':
+        print("Result:", add(args.x, args.y))
+    elif args.operation == 'subtract':
+        print("Result:", subtract(args.x, args.y))
+    elif args.operation == 'multiply':
+        print("Result:", multiply(args.x, args.y))
+    elif args.operation == 'divide':
         try:
-            print("Result:", divide(x, y))
+            print("Result:", divide(args.x, args.y))
         except ValueError as e:
             print(e)
-    else:
-        print("Invalid operation")
+
+if __name__ == "__main__":
+    main()
